@@ -46,7 +46,7 @@ code_repositories:
 
 code_quality_checks:
   codacy:
-    badge: https://api.codacy.com/project/badge/Grade/TODO
+    badge: https://api.codacy.com/project/badge/Grade/3b8686d1b2fe4c859cedcd0f435569ff
     url: "https://www.codacy.com/app/hbp-mip/docker-compose-for-ci?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=LREN-CHUV/docker-compose-for-ci&amp;utm_campaign=Badge_Grade"
 
 testing: {}
