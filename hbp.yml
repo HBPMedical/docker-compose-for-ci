@@ -1,0 +1,91 @@
+name: docker-docker-compose-for-ci
+description: "Base Docker image for migrations using docker-compose-for-ci"
+
+long_description: |
+  Base Docker image for migrations using docker-compose-for-ci.
+
+authors:
+  - author: Ludovic Claude
+    author_email:
+      - ludovic.claude@chuv.ch
+      - ludovic.claude54@gmail.com
+      - ludovic.claude54@googlemail.com
+    organisation: LREN-CHUV
+    organisation_badge: https://img.shields.io/badge/CHUV-LREN-AF4C64.svg
+  - author: Mirco Nasuti
+    author_email:
+      - mirco.nasuti@chuv.ch
+    organisation: LREN-CHUV
+    organisation_badge: https://img.shields.io/badge/CHUV-LREN-AF4C64.svg
+
+platform: MIP
+component:
+  mip_building_block: infrastructure
+  nature: docker-image
+
+license:
+  name: Apache 2.0
+  badge: https://img.shields.io/badge/license-Apache--2.0-blue.svg
+  url: https://github.com/LREN-CHUV/DOCKER-docker-compose-for-ci/blob/master/LICENSE
+
+code_repositories:
+  - name: chuv-gitlab
+    visibility: private
+    url: https://___.chuv.ch/mip-infra/docker-docker-compose-for-ci/
+    git_clone: https://___.chuv.ch/mip-infra/docker-docker-compose-for-ci.git
+  - name: github/LREN-CHUV
+    visibility: public
+    url: https://github.io/LREN-CHUV/docker-docker-compose-for-ci/
+    git_clone: https://github.io/LREN-CHUV/docker-docker-compose-for-ci.git
+  - name: github/HBPMedical
+    visibility: public
+    url: https://github.io/HBPMedical/docker-docker-compose-for-ci/
+    git_clone: https://github.io/HBPMedical/docker-docker-compose-for-ci.git
+
+code_quality_checks:
+  codacy:
+    badge: https://api.codacy.com/project/badge/Grade/bc651b5107f3413594cf788333cbb415
+    url: "https://www.codacy.com/app/hbp-mip/docker-docker-compose-for-ci?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=LREN-CHUV/docker-docker-compose-for-ci&amp;utm_campaign=Badge_Grade"
+
+testing:
+  unit_testing:
+    - sources: /tests
+    - command: /tests/tesh.sh
+
+release_management:
+  current_version: 0.9.1-0
+  current_code_release: https://github.com/HBPMedical/docker-docker-compose-for-ci/archive/0.9.1-0.zip
+  current_docker_release: docker pull hbpmip/docker-compose-for-ci:0.9.1-0
+  release_script: 'publish.sh'
+
+continuous_integration:
+  - name: CircleCI
+    description: "Check style and execute unit tests"
+    url: https://circleci.com/gh/LREN-CHUV/docker-docker-compose-for-ci
+    badge: https://circleci.com/gh/LREN-CHUV/docker-docker-compose-for-ci.svg?style=svg
+    actions:
+      - code_style
+      - unit_tests
+
+distribution:
+  docker_hub:
+    name: hbpmip/docker-compose-for-ci
+    current_tag: 0.9.1-0
+    url: https://hub.docker.com/r/hbpmip/docker-compose-for-ci/
+    badge: https://img.shields.io/badge/docker-hbpmip%2Fdocker-compose-for-ci-008bb8.svg
+    command: docker pull hbpmip/docker-compose-for-ci:0.9.1-0
+
+planning:
+  github:
+    name: Issues on Github
+    url: https://github.com/LREN-CHUV/docker-docker-compose-for-ci/issues
+
+related_projects:
+  - name: data-catalog-setup
+    mip_building_block: data-factory
+    relationship: other-depends-on
+    relationship_scope: build
+  - name: i2b2-setup
+    mip_building_block: data-factory
+    relationship: other-depends-on
+    relationship_scope: build

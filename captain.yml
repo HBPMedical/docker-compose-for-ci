@@ -1,0 +1,7 @@
+target_image:
+  build: Dockerfile
+  image: hbpmip/docker-compose-for-ci
+  pre:
+    - echo "Building hbpmip/docker-compose-for-ci image"
+  post:
+    - echo "Finished building hbpmip/docker-compose-for-ci image"
