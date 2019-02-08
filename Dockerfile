@@ -10,9 +10,8 @@ ARG VERSION
 # Install build requirements
 ########################################################################################################################
 
-RUN apk add --update --no-cache bash build-base git py-pip python python-dev curl \
+RUN apk add --update --no-cache bash build-base git py-pip python python-dev \
     && pip install pre-commit==1.14.3 \
-    && curl -sSL https://raw.githubusercontent.com/harbur/captain/v1.1.2/install.sh | bash \
     && rm -rf /var/cache/apk/* /tmp/*
 
 LABEL org.label-schema.build-date=$BUILD_DATE \
