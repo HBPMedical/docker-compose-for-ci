@@ -10,7 +10,7 @@ ARG VERSION
 # Install build requirements
 ########################################################################################################################
 
-RUN apk add --update --no-cache bash build-base git py-pip python python-dev \
+RUN apk add --update --no-cache bash build-base git py-pip python python-dev curl \
     && pip install pre-commit==1.14.3 \
     && rm -rf /var/cache/apk/* /tmp/*
 
