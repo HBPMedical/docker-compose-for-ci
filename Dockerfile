@@ -2,10 +2,6 @@ FROM tmaier/docker-compose:18.09
 
 MAINTAINER ludovic.claude@chuv.ch
 
-ARG BUILD_DATE
-ARG VCS_REF
-ARG VERSION
-
 ########################################################################################################################
 # Install build requirements
 ########################################################################################################################
@@ -13,6 +9,10 @@ ARG VERSION
 RUN apk add --update --no-cache bash build-base git py-pip python python-dev curl \
     && pip install pre-commit==1.14.3 \
     && rm -rf /var/cache/apk/* /tmp/*
+
+ARG BUILD_DATE
+ARG VCS_REF
+ARG VERSION
 
 LABEL org.label-schema.build-date=$BUILD_DATE \
       org.label-schema.name="hbpmip/docker-compose-for-ci" \
