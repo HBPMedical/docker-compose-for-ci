@@ -8,7 +8,7 @@ jobs:
     working_directory: ~/src
     docker:
       # Recursive self-reference...
-      - image: hbpmip/docker-compose-for-ci:18.09-1
+      - image: hbpmip/docker-compose-for-ci:18.09-2
     environment:
        - CIRCLECI: true
     steps:
