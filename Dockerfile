@@ -1,3 +1,5 @@
+FROM koalaman/shellcheck:v0.6.0 as shellcheck
+
 FROM tmaier/docker-compose:18.09
 
 MAINTAINER ludovic.claude@chuv.ch
@@ -7,8 +9,10 @@ MAINTAINER ludovic.claude@chuv.ch
 ########################################################################################################################
 
 RUN apk add --update --no-cache bash build-base git py-pip python python-dev curl \
-    && pip install pre-commit==1.14.3 \
+    && pip install pre-commit==1.15.1 \
     && rm -rf /var/cache/apk/* /tmp/*
+
+COPY --from=shellcheck /bin/shellcheck /usr/bin/shellcheck
 
 ARG BUILD_DATE
 ARG VCS_REF
