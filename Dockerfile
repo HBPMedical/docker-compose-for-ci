@@ -8,11 +8,28 @@ MAINTAINER ludovic.claude@chuv.ch
 # Install build requirements
 ########################################################################################################################
 
-RUN apk add --update --no-cache bash build-base git py-pip python python-dev curl openssh \
+RUN apk add --update --no-cache bash build-base git py-pip python python-dev curl openssh sudo jq \
     && pip install pre-commit==1.15.1 \
     && rm -rf /var/cache/apk/* /tmp/*
 
 COPY --from=shellcheck /bin/shellcheck /usr/bin/shellcheck
+
+# Make sure PATH includes ~/.local/bin
+# https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=839155
+RUN echo 'PATH="$HOME/.local/bin:$PATH"' >> /etc/profile.d/user-local-path.sh
+
+# Set timezone to UTC by default
+RUN ln -sf /usr/share/zoneinfo/Etc/UTC /etc/localtime
+
+# Use unicode
+ENV LANG=C.UTF-8
+
+RUN addgroup --gid 3434 circleci \
+  && adduser -u 3434 -G circleci -s /bin/bash -D circleci \
+  && mkdir -p /etc/sudoers.d \
+  && echo 'circleci ALL=NOPASSWD: ALL' >> /etc/sudoers.d/50-circleci
+
+USER circleci
 
 ARG BUILD_DATE
 ARG VCS_REF
