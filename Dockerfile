@@ -8,7 +8,7 @@ MAINTAINER ludovic.claude@chuv.ch
 # Install build requirements
 ########################################################################################################################
 
-RUN apk add --update --no-cache bash build-base git py-pip python python-dev curl \
+RUN apk add --update --no-cache bash build-base git py-pip python python-dev curl openssh \
     && pip install pre-commit==1.15.1 \
     && rm -rf /var/cache/apk/* /tmp/*
 
