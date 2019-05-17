@@ -31,6 +31,8 @@ RUN addgroup --gid 3434 circleci \
 
 USER circleci
 
+ENV CACHE_VERSION=v1
+
 ARG BUILD_DATE
 ARG VCS_REF
 ARG VERSION
